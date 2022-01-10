@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Youtube</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: #181818;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        p {
+            margin: 0px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            line-height: 20px;
+        }
+        
+        header {
+            max-width: 100%;
+            margin: auto;
+            background-color: #212121;
+            position: fixed;
+        }
+        
+        .wrap {
+            padding: 5px;
+            display: flex;
+            margin-left: 74px;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            background-color: #212121;
+        }
+        
+        .tags:hover {
+            background-color: rgb(96, 96, 96);
+        }
+        
+        .logo {
+            width: 22%;
+        }
+        
+        .search {
+            width: 53%;
+            position: relative;
+        }
+        
+        .settings {
+            width: 25%;
+        }
+        
+        .logo img {
+            width: 35%;
+        }
+        
+        input {
+            background-color: #121212;
+            color: white;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid rgb(37, 37, 37);
+            width: 85%;
+            position: relative;
+        }
+        
+        button {
+            background-color: #313131;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            margin-left: 0px;
+            cursor: pointer;
+        }
+        
+        .settings ul {
+            list-style: none;
+            width: 40%;
+            float: right;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .settings li {
+            margin: 0px 10px
+        }
+        
+        #userImg {
+            width: 70%;
+            border-radius: 50%;
+        }
+        /*sidebar icons*/
+        
+        .icon-bar {
+            width: 73px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 18px;
+            background-color: #212121;
+            text-align: center;
+        }
+        
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px 4px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 11px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+        
+        .fa {
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .menu {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+        }
+        
+        #container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            padding-top: 80px;
+            justify-content: space-between;
+        }
+        
+        #video {
+            width: 67%;
+            height: 500px;
+        }
+        
+        .sidebar {
+            width: 31%;
+        }
+        
+        .card2 {
+            margin: 2px 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .thumb {
+            width: 40%;
+        }
+        
+        .thumb img {
+            width: 100%;
+        }
+        
+        .channellogo img {
+            width: 20%;
+            border-radius: 50%;
+        }
+        
+        .videoInfo {
+            width: 60%;
+            padding: 0px 10px;
+        }
+        
+        .detail {
+            padding: 8px 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .channelImg {
+            width: 8%;
+        }
+        
+        .channelImg img {
+            width: 75%;
+            border-radius: 50%;
+        }
+        
+        .title {
+            width: 92%;
+        }
+        
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgb(54, 54, 54);
+        }
+        
+        .shareDetails ul {
+            list-style: none;
+            display: flex;
+            float: right;
+        }
+        
+        .shareDetails ul li {
+            margin: 0px 20px;
+        }
+        
+        .title {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #subscribe {
+            background-color: #cc0001;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 2px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .results {
+            position: absolute;
+            width: 44.5%;
+            height: 300px;
+            background-color: #212121;
+            top: 0;
+            margin-top: 55px;
+            margin-left: 315px;
+            overflow: auto;
+            padding: 10px;
+            display: none;
+        }
+        
+        .results p {
+            padding: 5px 0px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .results p a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <div class="icon-bar">
+                <i class="fa fa-bars" style="font-size:20px;color: white;"></i><br><br>
+            </div>
+            <div class="logo">
+                <a href="youtube.html"><img src="logo.png" alt=""></a>
+            </div>
+            <div class="search">
+                <input type="text" id="search" placeholder="Search" oninput="debounce(inputSearch,1000)">
+                <button onclick="searchMovie()">
+                    <i class="fa fa-search" style="font-size:20px"></i></button>
+            </div>
+            <div class="results" id="results"></div>
+            <div class="settings">
+                <ul>
+                    <li><i class="fa fa-video-camera" style="font-size:20px"></i></li>
+                    <li><i class="fa fa-bell" style="font-size:20px"></i></i>
+                    </li>
+                    <li><img id="userImg" src="https://yt3.ggpht.com/yti/APfAmoGJLooCmNlYTY-C-RqyPtrL_KNRCJlx5D25YPQ6rWw=s88-c-k-c0x00ffffff-no-rj-mo" alt=""></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div id="container">
+            <div id="video">
+                <iframe width="100%" height="500" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="title1">
+                    <h2 style="margin-bottom: 1px;font-weight: 500;" id="videoTitle">PayTM, GooglePay and UPI Scam | How Scammers fool you? | Dhruv Rathee</h2>
+                    <div class="row">
+                        <div class="views">
+                            <p style="color: grey;font-size: 16px;font-weight: 500;" id="videoViews">234,666 views</p>
+                        </div>
+                        <div class="shareDetails">
+                            <ul>
+                                <li id="like"> Like</li>
+                                <li id="dislike">Dislike</li>
+                                <li><i class="fa fa-share" style="font-size:20px"></i>&nbsp;Share</li>
+
+                                <li> <i class="fa fa-save" style="font-size:20px"></i>&nbsp;Save</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="detail">
+                        <div class="channelImg">
+                            <img id="channelLogo" alt="">
+                        </div>
+                        <div class="title">
+                            <div>
+                                <span style="color: white;font-size: 16px;font-weight: 600;" id="channelName">Atul Kharwal</span><br>
+                                <span style="color: grey;font-size: 14px;" id="subscribers">1.3M subscribers</span>
+                            </div>
+                            <div>
+                                <button id="subscribe">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="description">
+                        <p style="color: white;font-size: 14px;font-weight: 500;" id="videoDescription">Windows 11 upgrade process from Windows 10 using the Windows Update settings. More info 👉 https://pureinfotech.com/upgrade-wind... Quick note: Windows 11 will be available starting October 5 on newer devices, then over time, it
+                            will expand to other PCs. The OS is expected to be fully </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="sidebar" id="sidebar">
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+<script>
+    //search movies
+    let results = document.getElementById("results");
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        results.style.display = " none"
+    }
+
+    const inputSearch = async() => {
+        try {
+            let q = document.getElementById("search").value;
+            let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${q}&key=${key}`
+
+            let res = await fetch(url);
+            let data = await res.json();
+            let searchVideos = data.items;
+            showResults(searchVideos)
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    let bomb;
+    let debounce = (func, delay) => {
+        clearTimeout(bomb);
+
+        bomb = setTimeout(() => {
+            func()
+        }, delay)
+    }
+
+    let showResults = (data) => {
+        results.textContent = ""
+        results.style.display = "block";
+        console.log(data)
+        data.map(({
+            snippet: {
+                title
+            },
+            id: {
+                videoId
+            }
+        }) => {
+            let p = document.createElement("p");
+            p.innerHTML = `<a href="/watch.html?v=${videoId}" >${title}</a>`;
+            p.addEventListener('click', function() {
+
+            })
+            results.append(p)
+        })
+    }
+
+
+    let key = "AIzaSyA4D8vmhg4oqxQwm3dgMo6vxAesb1VA2K0";
+    let sidebar = document.getElementById("sidebar");
+
+    //getting value from url and filter the data 
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var id = url.searchParams.get("v");
+
+    //play video
+
+    const singleVideo = async() => {
+        try {
+            let video = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${key}`
+
+            let res = await fetch(video);
+            let data = await res.json();
+            let v = data.items;
+            console.log('v: ', v);
+
+            showVideo(v);
+
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+    singleVideo()
+    let showVideo = (v) => {
+            let url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${v[0].snippet.channelId}&key=${key}`
+            fetch(url).then((res) => {
+                return res.json()
+            }).then((data) => {
+                console.log(data)
+                channelImage = data.items[0].snippet.thumbnails.high.url;
+                var iframe = document.querySelector("iframe");
+                iframe.setAttribute("src", `https://www.youtube.com/embed/${id}?autoplay=1`)
+                document.getElementById("videoTitle").textContent = v[0].snippet.title;
+                document.getElementById("videoViews").textContent = v[0].statistics.viewCount + " views";
+                document.getElementById("channelLogo").setAttribute("src", channelImage);
+                document.getElementById("channelName").textContent = v[0].snippet.channelTitle;
+                document.getElementById("subscribers").textContent = numFormatter(data.items[0].statistics.subscriberCount) + " subscribers";
+                document.getElementById("videoDescription").textContent = v[0].snippet.description;
+
+                document.getElementById("like").innerHTML = `<i class="fa fa-thumbs-up" style="font-size:20px"></i> ${numFormatter(v[0].statistics.likeCount)}`;
+                document.getElementById("dislike").innerHTML = `<i class="fa fa-thumbs-down" style="font-size:20px"></i> ${numFormatter(v[0].statistics.dislikeCount)}`;
+            })
+        }
+        // converts number to string representation with K and M.
+        // toFixed(d) returns a string that has exactly 'd' digits
+        // after the decimal place, rounding if necessary.
+    function numFormatter(num) {
+        if (num > 999 && num < 1000000) {
+            return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million 
+        } else if (num > 1000000) {
+            return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million 
+        } else if (num < 900) {
+            return num; // if value < 1000, nothing to do
+        }
+    }
+
+    //popular videos on front page
+
+    const movies = async() => {
+        try {
+            let url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=${key}&maxResults=30`
+
+            let res = await fetch(url);
+            let data = await res.json();
+            let videos = data.items;
+            popularVideos(videos)
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    movies()
+    let popularVideos = (arr) => {
+        sidebar.innerHTML = "";
+        let output = ""
+        arr.map(({
+            snippet: {
+                publishedAt,
+                channelId,
+                channelTitle,
+                title,
+                description,
+                thumbnails: {
+                    medium
+                }
+            },
+            statistics: {
+                viewCount
+            },
+            id
+        }) => {
+            console.log(id)
+            output += `
+            <a href = "/watch.html?v=${id}" class="card2">
+     
+                    <div class="thumb">
+                        <img src="${medium.url}" alt="">  </div>
+                        <div class="videoInfo">
+                        <p >${title}</p>
+                        <div class="detail">
+                            <div class="channellogo">
+                                <span style="color: grey;font-size: 14px;">${channelTitle}</span><br>
+                                <span style="color: grey;font-size: 14px;">${numFormatter(Number(viewCount))} views</span>
+                            </div>
+                        </div>
+                    </div>
+            
+</div></a>
+        `;
+        })
+        sidebar.innerHTML = output;
+    }
+</script>
