@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Youtube</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <div class="icon-bar">
+                <i class="fa fa-bars" style="font-size:20px;color: white;"></i><br><br>
+                <a href="/"><i class="fa fa-home"></i><br><br> Home</a>
+                <a href="#"><i class="fa fa-search"></i><br><br>Explore</a>
+                <a href="#"><i class="fa fa-envelope"></i><br><br>Subscriptions</a>
+                <a href="#"><i class="fa fa-globe"></i><br><br>Libraries</a>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="./images/logo.png" alt=""></a>
+            </div>
+            <div class="search">
+                <input type="text" id="search" placeholder="Search" oninput="debounce(inputSearch,1000)">
+                <button onclick="searchMovie()">
+                    <i class="fa fa-search" style="font-size:20px"></i></button>
+            </div>
+            <div class="results" id="results"></div>
+            <div class="settings">
+                <ul>
+                    <li><i class="fa fa-video-camera" style="font-size:20px"></i></li>
+                    <li><i class="fa fa-bell" style="font-size:20px"></i></i>
+                    </li>
+                    <li><img id="userImg" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt=""></li>
+                    <!-- <li><img id="userImg" src="https://yt3.ggpht.com/yti/APfAmoGJLooCmNlYTY-C-RqyPtrL_KNRCJlx5D25YPQ6rWw=s88-c-k-c0x00ffffff-no-rj-mo" alt=""></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="wrap2" id="wrap2">
+            <div class="tags">All</div>
+            <div class="tags" onclick="searchMovie2('Javascript')">Javascript</div>
+            <div class="tags" onclick="searchMovie2('Bollywood songs')">Bollywood Songs</div>
+            <div class="tags" onclick="searchMovie2('Computer programming')">Computer Programming</div>
+            <div class="tags" onclick="searchMovie2('Linkin park')">Linkin Park</div>
+            <div class="tags">Army</div>
+            <div class="tags">News</div>
+            <div class="tags">Eminem</div>
+            <div class="tags">Drake</div>
+            <div class="tags">CNN</div>
+            <div class="tags">React js</div>
+        </div>
+    </header>
+    <section>
+        <div id="container">
+            <div id="videos">
+                <div class="loader"></div>
+            </div>
+
+
+            <div class="searchResults" id="searchResults">
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" id="modalContent">
+            <span class="close" id="close">&times;</span>
+            <div id="register-form">
+                <div id="wrapForm">
+                    <h1>Register</h1>
+                    <form action="" id="form">
+                        <input type="text" name="" id="name" placeholder="Name" />
+                        <input type="email" name="" id="email" placeholder="email" />
+                        <input type="password" name="" id="password" placeholder="password" />
+                        <input type="text" name="" id="username" placeholder="username" />
+                        <input type="number" name="" id="mobile" placeholder="mobile" />
+                        <input type="text" name="" id="description" placeholder="description" />
+                    </form>
+                    <button onclick="register()">SignUp</button>
+                    <a id="showLogin"> Already a member?</a>
+                </div>
+                <span id="alert"></span>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script type="module">
+    import login from "./components/login.js";
+    import signup from "./components/signup.js";
+    let login1 = login();
+    let signup1 = signup();
+
+            let modal = document.getElementById("register-form");
+            let mainmodal = document.getElementById("myModal");
+
+            let showLogin = document.getElementById("showLogin")
+            showLogin.addEventListener("click" , function(){
+                modal.style.display = "block";
+                mainmodal.style.display = "block";
+            modal.innerHTML = login1;
+            showSignup2();
+           })
+
+           function showSignup2(){
+               var showSignup = document.getElementById("showSignup");
+                showSignup.addEventListener("click" , function(){
+                modal.innerHTML = signup1;
+                showLogin2()
+            })
+           }
+
+           function showLogin2(){
+            let showLogin = document.getElementById("showLogin")
+                showLogin.addEventListener("click" , function(){
+                modal.innerHTML = login1;
+                showSignup2();
+                })
+           }
+         
+
+
+</script>
+<script>
+    let mainmodal = document.getElementById("myModal");
+
+    async function register() {
+        let signup_data = {
+            name: form.name.value,
+            email: form.email.value,
+            password: form.password.value,
+            username: form.username.value,
+            mobile: form.mobile.value,
+            description: form.description.value,
+        };
+
+        signup_data = JSON.stringify(signup_data);
+        console.log(signup_data);
+
+        try {
+            let register_api = `https://masai-api-mocker.herokuapp.com/auth/register`;
+
+            let response = await fetch(register_api, {
+                method: "POST",
+                body: signup_data,
+
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            let data = await response.json();
+            console.log('data: ', data);
+            document.getElementById("alert").textContent = "Successfully registered!!! Please login";
+            document.getElementById("alert").style.color = "green";
+        } catch (err) {
+            console.log('err: ', err);
+        }
+
+    }
+
+    async function login() {
+        let login_data = {
+            username: form.username.value,
+            password: form.password.value,
+
+        };
+
+        login_data = JSON.stringify(login_data);
+        console.log(login_data);
+
+        let login_api = `https://masai-api-mocker.herokuapp.com/auth/login`;
+
+        let response = await fetch(login_api, {
+            method: "POST",
+            body: login_data,
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        let data = await response.json();
+
+        let username = form.username.value;
+        getProfile(username, data.token);
+        console.log('data: ', data);
+
+    }
+
+    async function getProfile(username, token) {
+        try {
+
+            let api = `https://masai-api-mocker.herokuapp.com/user/${username}`;
+
+            let response = await fetch(api, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            let userdata = await response.json();
+            console.log('data: ', userdata);
+            alert("Successfully login")
+            mainmodal.style.display = "none";
+            document.getElementById("userImg").setAttribute("src",
+                "https://yt3.ggpht.com/yti/APfAmoGJLooCmNlYTY-C-RqyPtrL_KNRCJlx5D25YPQ6rWw=s88-c-k-c0x00ffffff-no-rj-mo"
+            )
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("userImg");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+        mainmodal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+
+    //search movies
+    let results = document.getElementById("results");
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        results.style.display = " none"
+    }
+
+    const inputSearch = async () => {
+        try {
+            let q = document.getElementById("search").value;
+            let url =
+                `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${q}&key=${key}`
+
+            let res = await fetch(url);
+            let data = await res.json();
+            let searchVideos = data.items;
+            showResults(searchVideos)
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    let bomb;
+    let debounce = (func, delay) => {
+        clearTimeout(bomb);
+
+        bomb = setTimeout(() => {
+            func()
+        }, delay)
+    }
+
+    let showResults = (data) => {
+        results.textContent = ""
+        results.style.display = "block";
+        console.log(data)
+        data.map(({
+            snippet: {
+                title
+            },
+            id: {
+                videoId
+            }
+        }) => {
+            let p = document.createElement("p");
+            p.innerHTML = `<a href="/watch.html?v=${videoId}" >${title}</a>`;
+            p.addEventListener('click', function () {
+
+            })
+            results.append(p)
+        })
+    }
+
+
+
+
+    let key = "AIzaSyA4D8vmhg4oqxQwm3dgMo6vxAesb1VA2K0";
+    let searchResults = document.getElementById("searchResults");
+    let videos = document.getElementById("videos");
+    let wraps = document.getElementById("wrap2");
+    // converts number to string representation with K and M.
+    // toFixed(d) returns a string that has exactly 'd' digits
+    // after the decimal place, rounding if necessary.
+    function numFormatter(num) {
+        if (num > 999 && num < 1000000) {
+            return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million 
+        } else if (num > 1000000) {
+            return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million 
+        } else if (num < 900) {
+            return num; // if value <img 1000, nothing to do
+        }
+    }
+
+    //popular videos on front page
+
+    const movies = async () => {
+        try {
+            let url =
+                `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=${key}&maxResults=30`
+
+            let res = await fetch(url);
+            let data = await res.json();
+            let videos = data.items;
+
+            popularVideos(videos)
+
+
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    movies()
+
+    let popularVideos = (arr) => {
+        searchResults.innerHTML = "";
+        videos.style.display = "flex"
+        wrap2.style.display = "flex"
+        let channelImage = ""
+        let output = ""
+        arr.map(({
+            snippet: {
+                publishedAt,
+                channelId,
+                channelTitle,
+                title,
+                description,
+                thumbnails: {
+                    medium
+                }
+            },
+            statistics: {
+                viewCount
+            },
+            id
+        }) => {
+
+            let url =
+                `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${key}`
+            fetch(url).then((res) => {
+                return res.json()
+            }).then((data) => {
+                channelImage = data.items[0].snippet.thumbnails.high.url;
+                output += `
+                <a href = "/watch.html?v=${id}" class="card">
+            <div >
+                <div class="thumbnail">
+                    <img src="${medium.url}" alt="">
+                </div>
+                <div class="detail">
+                    <div class="channelImg">
+                        <img src="${channelImage}" alt="">
+                    </div>
+                    <div class="title">
+                        <p>${title}</p>
+                        <span style="color: grey;font-size: 14px;">${channelTitle}</span><br>
+                        <span style="color: grey;font-size: 14px;">${numFormatter(Number(viewCount))} views</span>
+                    </div>
+                </div>
+            </div></a>`;
+                videos.innerHTML = output;
+            })
+        })
+
+    }
+
+    //button click movies
+    const searchMovie2 = async (q) => {
+        try {
+
+            let url =
+                `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${q}&key=${key}`
+
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log('data: ', data);
+            let arrayOfVideos = data.items;
+
+            appendVideos(arrayOfVideos);
+
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    //search movies
+    const searchMovie = async () => {
+        try {
+            let q = document.getElementById("search").value;
+            let url =
+                `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${q}&key=${key}`
+
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log('data: ', data);
+            let arrayOfVideos = data.items;
+            console.log('arrayOfVideos: ', arrayOfVideos);
+            setTimeout(() => {
+                appendVideos(arrayOfVideos);
+            }, 2000)
+
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+
+    let appendVideos = (arr) => {
+        let output = ""
+        videos.style.display = "none"
+        wrap2.style.display = "none"
+        videos.innerHTML = "";
+        arr.map(({
+            snippet: {
+                publishedAt,
+                channelId,
+                channelTitle,
+                title,
+                description,
+                thumbnails: {
+                    medium
+                },
+
+            },
+            id: {
+                videoId
+            }
+        }) => {
+
+            let url =
+                `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${key}`
+            fetch(url).then((res) => {
+                return res.json()
+            }).then((data) => {
+                console.log(data.items)
+                channelImage = data.items[0].snippet.thumbnails.high.url;
+                output += `
+                <a href = "/watch.html?v=${videoId}" class="card2">
+    
+                    <div class="thumb">
+                        <img src="${medium.url}" alt=""> </div>
+                    <div class="videoInfo">
+                        <h3 style="margin: 0px;">${title}</h3>
+                        <span style="color: grey;font-size: 14px;">${numFormatter(Number(Math.floor(Math.random()*5000000)))} views</span>
+                        <div class="detail">
+                            <div class="channellogo">
+                                <img src="${channelImage}" alt=""> &nbsp; &nbsp;<span style="color: grey;font-size: 14px;">${channelTitle}</span>
+                            </div>
+                        </div><br>
+
+                        <span style="color: grey;font-size: 14px;">${description}</span>
+
+                
+                </div></a>
+            `;
+                searchResults.innerHTML = output;
+            })
+
+
+        })
+
+    }
+</script>

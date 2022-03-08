@@ -1,0 +1,333 @@
+ body {
+            margin: 0px;
+            padding: 0px;
+            background-color: #181818;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        p {
+            margin: 0px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            line-height: 20px;
+        }
+        
+        header {
+            width: 100%;
+            margin: auto;
+            background-color: #212121;
+            position: fixed;
+        }
+        
+        .wrap {
+            padding: 5px;
+            display: flex;
+            margin-left: 74px;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            border-bottom: 1px solid rgb(56, 56, 56);
+            background-color: #212121;
+        }
+        
+        .wrap2 {
+            padding: 5px;
+            display: flex;
+            margin-left: 74px;
+            align-items: center;
+            height: 40px;
+            border-bottom: 1px solid rgb(56, 56, 56);
+            background-color: #212121;
+        }
+        
+        .tags {
+            padding: 6px 20px;
+            border: 1px solid rgb(78, 78, 78);
+            border-radius: 20px;
+            background-color: #373737;
+            margin: 0px 10px;
+            cursor: pointer;
+        }
+        
+        .tags:hover {
+            background-color: rgb(96, 96, 96);
+        }
+        
+        .logo {
+            width: 22%;
+        }
+        
+        .search {
+            width: 53%;
+            position: relative;
+        }
+        
+        .results {
+            position: absolute;
+            width: 44.5%;
+            height: 300px;
+            background-color: #212121;
+            top: 0;
+            margin-top: 55px;
+            margin-left: 315px;
+            overflow: auto;
+            padding: 10px;
+            display: none;
+        }
+        
+        .results p {
+            padding: 5px 0px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .settings {
+            width: 25%;
+        }
+        
+        .logo img {
+            width: 35%;
+        }
+        
+        input {
+            background-color: black;
+            color: white;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid rgb(37, 37, 37);
+            width: 85%;
+        }
+        
+        input:focus {
+            outline: none;
+            background-color: black;
+        }
+        
+        button {
+            background-color: #313131;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            margin-left: 0px;
+            cursor: pointer;
+        }
+        
+        .settings ul {
+            list-style: none;
+            width: 40%;
+            float: right;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .settings li {
+            margin: 0px 10px
+        }
+        
+        #userImg {
+            width: 70%;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        /*sidebar icons*/
+        
+        .icon-bar {
+            width: 73px;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding-top: 18px;
+            background-color: #212121;
+            text-align: center;
+        }
+        
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px 4px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 11px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+        
+        .fa {
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .menu {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+        }
+        
+        #videos {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 75px;
+            padding: 120px 20px;
+            background-color: rgb(25, 25, 25);
+        }
+        
+        .card {
+            width: 23%;
+            margin: 10px 10px;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+        }
+        
+        .detail {
+            padding: 5px 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .channelImg {
+            width: 15%;
+        }
+        
+        .channelImg img {
+            width: 80%;
+            border-radius: 50%;
+        }
+        
+        .title {
+            width: 85%;
+        }
+        
+        .searchResults {
+            width: 78%;
+            margin: auto;
+            padding: 80px 0px;
+        }
+        
+        .card2 {
+            margin: 10px 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .thumb {
+            width: 40%;
+        }
+        
+        .thumb img {
+            width: 100%;
+        }
+        
+        .channellogo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .channellogo img {
+            width: 5%;
+            border-radius: 50%;
+        }
+        
+        .videoInfo {
+            width: 60%;
+            padding: 5px 10px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .loader {
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 10px solid #2d2d2d;
+            width: 80px;
+            height: 80px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
+            margin: 100px auto;
+        }
+        /* Safari */
+        
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #313131;/* Fallback color */
+  background-color: rgba(0, 0, 0, 0.551); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: white;
+    color: black;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  height: 450px;
+}
+
+.modal-content a, .modal-content p{
+    color: black;
+    cursor: pointer;
+}
+.modal-content input{
+    background-color: white;
+    color: black;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
