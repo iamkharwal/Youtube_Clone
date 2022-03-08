@@ -6,4 +6,6 @@ This is clone of YouTube.YouTube is a free video-sharing website that provides a
 * JavaScript
 
 #Watch Demo
-<video controls><source src="https://github.com/iamkharwal/Youtube_Clone/blob/main/demo/Youtube.mp4" type="video/mp4" ><video>
+
+https://user-images.githubusercontent.com/93377463/157297588-1281a1d1-5749-4afd-8cb0-9d810018783c.mp4
+
